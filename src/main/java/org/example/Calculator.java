@@ -1,6 +1,9 @@
 package org.example;
 
 import javax.swing.*;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,7 +11,7 @@ import java.util.ArrayList;
 
 public class Calculator {
     private ArrayList<JButton> buttons = new ArrayList<>();
-    private JTextArea textArea;
+    private JTextPane textPane;
     private String[] buttonLabel = {"C", "+/-", "%", "÷", "7", "8", "9", "x", "4", "5", "6", "-", "1", "2", "3", "+", "0", "00", ".", "="};
 
 
@@ -18,19 +21,26 @@ public class Calculator {
     }
     public void createGUI(){
         JFrame window = new JFrame("Calculator");
-        JPanel textAreaPanel = new JPanel();
+        JPanel textPanePanel = new JPanel();
         JPanel buttonPanel = new JPanel(new GridLayout(5,4));
 
-        textArea = new JTextArea();
-        textArea.setBorder(BorderFactory.createEmptyBorder(90,10,90,10));
-        textArea.setEditable(false);
-        Font bigFont = textArea.getFont().deriveFont(18f);
+        textPane = new JTextPane();
+        textPane.setBorder(BorderFactory.createEmptyBorder(90,10,90,10));
+        textPane.setEditable(false);
+        Font bigFont = textPane.getFont().deriveFont(18f);
 
-        textArea.setFont(bigFont);
-        textArea.setForeground(Color.white);
-        textArea.setBackground(Color.decode("#0C0C0C"));
-        textAreaPanel.setBackground(Color.decode("#0C0C0C"));
-        textAreaPanel.add(textArea);
+        textPane.setFont(bigFont);
+        textPane.setForeground(Color.white);
+        textPane.setBackground(Color.decode("#0C0C0C"));
+
+//        StyledDocument doc = textPane.getStyledDocument();
+//        SimpleAttributeSet right = new SimpleAttributeSet();
+//        StyleConstants.setAlignment(right, StyleConstants.ALIGN_RIGHT);
+//        StyleConstants.setAlignment(right, StyleConstants.ALIGN_RIGHT);
+//        doc.setParagraphAttributes(0, doc.getLength(), right, false);
+        
+        textPanePanel.setBackground(Color.decode("#0C0C0C"));
+        textPanePanel.add(textPane);
 
         for(int i = 0; i < 20; i++){
             JButton button = new JButton(buttonLabel[i]);
@@ -52,7 +62,7 @@ public class Calculator {
 
 
         window.getContentPane().setBackground(Color.decode("#0C0C0C"));
-        window.getContentPane().add(BorderLayout.NORTH, textAreaPanel);
+        window.getContentPane().add(BorderLayout.NORTH, textPanePanel);
         window.getContentPane().add(BorderLayout.CENTER, buttonPanel);
 
         window.setVisible(true);
@@ -66,9 +76,9 @@ public class Calculator {
         public void actionPerformed(ActionEvent e) {
             String buttonLabel = e.getActionCommand();
             if(buttonLabel.equals("C")){
-                textArea.setText("");
+                textPane.setText("");
             }else{
-                textArea.append(buttonLabel);
+                textPane.setText(textPane.getText() + buttonLabel);
             }
 
         }
