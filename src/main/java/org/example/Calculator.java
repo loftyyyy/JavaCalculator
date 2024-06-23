@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class Calculator {
     private ArrayList<JButton> buttons = new ArrayList<>();
+    private JTextArea textArea;
     private String[] buttonLabel = {"C", "+/-", "%", "÷", "7", "8", "9", "x", "4", "5", "6", "-", "1", "2", "3", "+", "0", "00", ".", "="};
 
 
@@ -20,15 +21,21 @@ public class Calculator {
         JPanel textAreaPanel = new JPanel();
         JPanel buttonPanel = new JPanel(new GridLayout(5,4));
 
-        JTextField textArea = new JTextField(300);
+        textArea = new JTextArea();
         textArea.setBorder(BorderFactory.createEmptyBorder(90,10,90,10));
         textArea.setEditable(false);
+        Font bigFont = textArea.getFont().deriveFont(18f);
+
+        textArea.setFont(bigFont);
+        textArea.setForeground(Color.white);
         textArea.setBackground(Color.decode("#0C0C0C"));
         textAreaPanel.setBackground(Color.decode("#0C0C0C"));
         textAreaPanel.add(textArea);
 
         for(int i = 0; i < 20; i++){
             JButton button = new JButton(buttonLabel[i]);
+            Font buttonFont = new Font("Tahoma", Font.BOLD, 20);
+            button.setFont(buttonFont);
             button.addActionListener(new BtnActionListener());
             button.setBorder(BorderFactory.createBevelBorder(3));
             if(buttonLabel[i].equals("÷") || buttonLabel[i].equals("x") || buttonLabel[i].equals("-") || buttonLabel[i].equals("+") || buttonLabel[i].equals("=") ){
@@ -57,6 +64,12 @@ public class Calculator {
     class BtnActionListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
+            String buttonLabel = e.getActionCommand();
+            if(buttonLabel.equals("C")){
+                textArea.setText("");
+            }else{
+                textArea.append(buttonLabel);
+            }
 
         }
     }
