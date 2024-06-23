@@ -21,6 +21,7 @@ public class Calculator {
         JPanel buttonPanel = new JPanel(new GridLayout(5,4));
 
         JTextField textArea = new JTextField(300);
+        textArea.setBorder(BorderFactory.createEmptyBorder(90,10,90,10));
         textArea.setEditable(false);
         textArea.setBackground(Color.decode("#0C0C0C"));
         textAreaPanel.add(textArea);
@@ -28,6 +29,7 @@ public class Calculator {
         for(int i = 0; i < 20; i++){
             JButton button = new JButton(buttonLabel[i]);
             button.addActionListener(new BtnActionListener());
+//            button.setBorder(BorderFactory.createBevelBorder(3));
             if(buttonLabel[i].equals("÷") || buttonLabel[i].equals("x") || buttonLabel[i].equals("-") || buttonLabel[i].equals("+") || buttonLabel[i].equals("=") ){
                 button.setBackground(Color.decode("#E0A75E"));
             }else if(buttonLabel[i].equals("C") || buttonLabel[i].equals("+/-") || buttonLabel[i].equals("%")){
