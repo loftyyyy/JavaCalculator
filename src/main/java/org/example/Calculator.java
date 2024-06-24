@@ -1,5 +1,10 @@
 package org.example;
 
+import com.ezylang.evalex.EvaluationException;
+import com.ezylang.evalex.Expression;
+import com.ezylang.evalex.data.EvaluationValue;
+import com.ezylang.evalex.parser.ParseException;
+
 import javax.swing.*;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -8,6 +13,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 
 public class Calculator {
     private ArrayList<JButton> buttons = new ArrayList<>();
@@ -77,8 +83,20 @@ public class Calculator {
             String buttonLabel = e.getActionCommand();
             if(buttonLabel.equals("C")){
                 textPane.setText("");
-            }else{
+            } else{
                 textPane.setText(textPane.getText() + buttonLabel);
+            }
+            if(buttonLabel.equals("=")){
+                Expression expression = new Expression(textPane.getText());
+                try {
+                    EvaluationValue result = expression.evaluate();
+                    textPane.setText(String.valueOf(result.getNumberValue()));
+                } catch (EvaluationException ex) {
+                    throw new RuntimeException(ex);
+                } catch (ParseException ex) {
+                    throw new RuntimeException(ex);
+                }
+
             }
 
         }
