@@ -52,7 +52,12 @@ public class Calculator {
             JButton button = new JButton(buttonLabel[i]);
             Font buttonFont = new Font("Tahoma", Font.BOLD, 20);
             button.setFont(buttonFont);
-            button.addActionListener(new BtnActionListener());
+            if(i == 19){
+
+            }else{
+                button.addActionListener(new BtnActionListener());
+
+            }
             button.setBorder(BorderFactory.createBevelBorder(3));
             if(buttonLabel[i].equals("÷") || buttonLabel[i].equals("x") || buttonLabel[i].equals("-") || buttonLabel[i].equals("+") || buttonLabel[i].equals("=") ){
                 button.setBackground(Color.decode("#E0A75E"));
@@ -80,24 +85,9 @@ public class Calculator {
         @Override
         public void actionPerformed(ActionEvent e) {
             String buttonLabel = e.getActionCommand();
-            if(buttonLabel.equals("C")){
-                textPane.setText("");
-            }if(buttonLabel.equals("=")){
-                Expression expression = new Expression(textPane.getText());
-                try {
-                    EvaluationValue result = expression.evaluate();
-                    textPane.setText(String.valueOf(result.getNumberValue()));
-                } catch (EvaluationException ex) {
-                    throw new RuntimeException(ex);
-                } catch (ParseException ex) {
-                    throw new RuntimeException(ex);
-                }
-
-            }else{
-                textPane.setText(textPane.getText() + buttonLabel);
-            }
 
         }
     }
+
 
 }
