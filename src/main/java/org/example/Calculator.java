@@ -61,7 +61,6 @@ public class Calculator {
 
             }else{
                 button.setBackground(Color.decode("#E7D4B5"));
-
             }
             buttonPanel.add(button);
         }
@@ -83,10 +82,7 @@ public class Calculator {
             String buttonLabel = e.getActionCommand();
             if(buttonLabel.equals("C")){
                 textPane.setText("");
-            } else{
-                textPane.setText(textPane.getText() + buttonLabel);
-            }
-            if(buttonLabel.equals("=")){
+            }if(buttonLabel.equals("=")){
                 Expression expression = new Expression(textPane.getText());
                 try {
                     EvaluationValue result = expression.evaluate();
@@ -97,6 +93,8 @@ public class Calculator {
                     throw new RuntimeException(ex);
                 }
 
+            }else{
+                textPane.setText(textPane.getText() + buttonLabel);
             }
 
         }
