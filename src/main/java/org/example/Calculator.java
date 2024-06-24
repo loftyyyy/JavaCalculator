@@ -53,6 +53,10 @@ public class Calculator {
             Font buttonFont = new Font("Tahoma", Font.BOLD, 20);
             button.setFont(buttonFont);
             if(i == 19){
+                button.addActionListener(new EqualBtnListener());
+
+            }else if(i == 0){
+                button.addActionListener(new ClearBtnListener());
 
             }else{
                 button.addActionListener(new BtnActionListener());
@@ -85,6 +89,18 @@ public class Calculator {
         @Override
         public void actionPerformed(ActionEvent e) {
             String buttonLabel = e.getActionCommand();
+
+        }
+    }
+    class EqualBtnListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+    public class ClearBtnListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
 
         }
     }
