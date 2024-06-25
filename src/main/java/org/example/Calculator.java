@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class Calculator {
     private ArrayList<JButton> buttons = new ArrayList<>();
     private JTextPane textPane;
-    private String[] buttonLabel = {"C", "+/-", "%", "/", "7", "8", "9", "*", "4", "5", "6", "-", "1", "2", "3", "+", "0", "00", ".", "="};
+    private String[] buttonLabel = {"C", "(", ")", "/", "7", "8", "9", "*", "4", "5", "6", "-", "1", "2", "3", "+", "0", "00", ".", "="};
 
 
     public static void main(String[] args){
@@ -66,7 +66,7 @@ public class Calculator {
             button.setBorder(BorderFactory.createBevelBorder(3));
             if(buttonLabel[i].equals("/") || buttonLabel[i].equals("*") || buttonLabel[i].equals("-") || buttonLabel[i].equals("+") || buttonLabel[i].equals("=") ){
                 button.setBackground(Color.decode("#E0A75E"));
-            }else if(buttonLabel[i].equals("C") || buttonLabel[i].equals("+/-") || buttonLabel[i].equals("%")){
+            }else if(buttonLabel[i].equals("C") || buttonLabel[i].equals("(") || buttonLabel[i].equals(")")){
                 button.setBackground(Color.decode("#F2613F"));
 
             }else{
