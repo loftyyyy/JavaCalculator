@@ -52,6 +52,7 @@ public class Calculator {
             JButton button = new JButton(buttonLabel[i]);
             Font buttonFont = new Font("Tahoma", Font.BOLD, 20);
             button.setFont(buttonFont);
+            button.setFocusable(false);
             if(i == 19){
                 button.addActionListener(new EqualBtnListener());
 
@@ -102,7 +103,7 @@ public class Calculator {
                 textPane.setText(String.valueOf(result.getNumberValue()));
 
             }catch (Exception d){
-                d.printStackTrace();
+                textPane.setText("Math Error");
             }
 
 
